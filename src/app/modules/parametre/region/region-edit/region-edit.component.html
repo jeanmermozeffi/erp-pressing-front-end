@@ -1,0 +1,9 @@
+<!--begin::Modal - Add task-->
+<a class="btn btn-success btn-active-color-default btn-sm px-4 me-2" (click)="openModal($event)" data-bs-toggle="modal" data-bs-target="#modalRegion">
+  Éditer
+</a>
+<app-modal #modalRegion [modalConfig]="modalConfig">
+  <app-region-form [region]="currentRegion" *ngIf="currentRegion$ | async as currentRegion" (formSubmitEvent)="onSubmit($event)">
+  </app-region-form>
+</app-modal>
+<!--end::Modal - Add task-->

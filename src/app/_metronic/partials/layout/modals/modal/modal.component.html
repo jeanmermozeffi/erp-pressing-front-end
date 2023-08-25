@@ -1,0 +1,29 @@
+<ng-template #modal #content let-modal>
+    <div class="modal-content">
+        <div class="modal-header">
+            <!--begin::Modal title-->
+            <h2>{{ modalConfig.modalTitle }}</h2>
+            <!--end::Modal title-->
+            <!--begin::Close-->
+            <div class="btn btn-sm btn-icon btn-active-color-primary" (click)="dismiss()" *ngIf="modalConfig.hideDismissButton === undefined || !modalConfig.hideDismissButton()">
+                <span class="svg-icon svg-icon-1" [inlineSVG]="'./assets/media/icons/duotune/arrows/arr061.svg'"></span>
+                <!--end::Svg Icon-->
+            </div>
+            <!--end::Close-->
+        </div>
+        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+            <ng-content></ng-content>
+        </div>
+        <div class="modal-footer">
+            <div class="text-center">
+                <!--<button type="submit" class="btn btn-primary me-3">
+                    {{ modalConfig.submitButtonLabel }}
+                </button>-->
+                <button type="button" class="btn btn-danger" (click)="close()" *ngIf="modalConfig.hideCloseButton === undefined || !modalConfig.hideCloseButton()"
+                    [disabled]="modalConfig.disableCloseButton !== undefined && modalConfig.disableCloseButton()">
+                    {{ modalConfig.closeButtonLabel }}
+                </button>
+            </div>
+        </div>
+    </div>
+</ng-template>

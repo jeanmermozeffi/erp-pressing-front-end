@@ -1,0 +1,9 @@
+<!--begin::Modal - Add task-->
+<a class="btn btn-success btn-active-color-default btn-sm px-4 me-2" (click)="openModal($event)" data-bs-toggle="modal" data-bs-target="#modalNationalite">
+  Éditer
+</a>
+<app-modal #modalNationalite [modalConfig]="modalConfig">
+  <app-nationalite-form [nationalite]="currentNationalite" *ngIf="currentNationalite$ | async as currentNationalite" (formSubmitEvent)="onSubmit($event)">
+  </app-nationalite-form>
+</app-modal>
+<!--end::Modal - Add task-->

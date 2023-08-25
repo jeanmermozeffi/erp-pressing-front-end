@@ -1,0 +1,50 @@
+<form class="form" [formGroup]="villeForm" (ngSubmit)="onSubmit()">
+  <!--begin::Scroll-->
+  <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}"
+    data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+    <!--begin::Input group-->
+    <div class="row mb-7">
+      <!--begin::Col-->
+      <div class="col-md-12 fv-row" *ngIf="regionList$|async as data">
+        <label class="fs-6 fw-semibold mb-2">
+          <span class="required">Pays</span>
+        </label>
+        <!--end::Label-->
+        <!--begin::Input-->
+        <select name="region" aria-label="Selectionnez une région" data-placeholder="Selectionnez un région..." data-dropdown-parent="#modalVille" class="form-select fw-bold" id=""
+          formControlName="region">
+          <option value="">Selectionnez une région...</option>
+          <option *ngFor="let region of data" [value]="region.id">{{ region.nom | uppercase }}</option>
+        </select>
+        <!--<input type="text" formControlName="nom" class="form-control form-control-solid" placeholder="" name="nom" value="" [ngClass]="{
+                            'is-invalid': villeForm.controls['nom'].invalid && villeForm.controls['nom'].touched,
+                            'is-valid': villeForm.controls['nom'].valid
+                        }" />-->
+
+        <!--<ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                                validation: 'required',
+                                message: 'username is required',
+                                control: villeForm.controls['code]
+                              }">
+                        </ng-container>
+                -->
+      </div>
+    </div>
+    <div class="fv-row g-9 mb-7">
+      <!--begin::Label-->
+      <label class="required fs-6 fw-semibold mb-2">Ville</label>
+      <!--end::Label-->
+      <!--begin::Input-->
+      <input type="text" name="nom" formControlName="nom" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nom" value="" [ngClass]="{
+                    'is-invalid': villeForm.controls['nom'].invalid && villeForm.controls['nom'].touched,
+                    'is-valid': villeForm.controls['nom'].valid
+                }" />
+      <!--end::Input-->
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary me-3" [disabled]="villeForm.invalid">
+        {{ modalConfig.submitButtonLabel }}
+      </button>
+    </div>
+  </div>
+</form>

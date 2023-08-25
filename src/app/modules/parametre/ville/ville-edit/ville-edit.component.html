@@ -1,0 +1,9 @@
+<!--begin::Modal - Add task-->
+<a class="btn btn-success btn-active-color-default btn-sm px-4 me-2" (click)="openModal($event)" data-bs-toggle="modal" data-bs-target="#modalVille">
+  Éditer
+</a>
+<app-modal #modalVille [modalConfig]="modalConfig">
+  <app-ville-form [ville]="currentVille" *ngIf="currentVille$ | async as currentVille" (formSubmitEvent)="onSubmit($event)">
+  </app-ville-form>
+</app-modal>
+<!--end::Modal - Add task-->

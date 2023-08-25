@@ -1,0 +1,44 @@
+<form class="form" [formGroup]="nationaliteForm" (ngSubmit)="onSubmit()">
+  <!--begin::Scroll-->
+  <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}"
+    data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+    <!--begin::Input group-->
+    <div class="row mb-7">
+      <!--begin::Col-->
+      <div class="col-md-12 fv-row" *ngIf="paysList$|async as data">
+        <label class="fs-6 fw-semibold mb-2">
+          <span class="required">Pays</span>
+        </label>
+        <!--end::Label-->
+        <!--begin::Input-->
+        <select name="pays" aria-label="Selectionnez une pays" data-placeholder="Selectionnez un pays..." data-dropdown-parent="#modalNationalite" class="form-select fw-bold" id=""
+          formControlName="pays">
+          <option value="">Selectionnez une pays...</option>
+          <option *ngFor="let pays of data" [value]="pays.id">{{ pays.nom | uppercase }}</option>
+        </select>
+        <!--<ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                                validation: 'required',
+                                message: 'username is required',
+                                control: nationaliteForm.controls['code]
+                              }">
+        </ng-container>-->
+      </div>
+    </div>
+    <div class="fv-row g-9 mb-7">
+      <!--begin::Label-->
+      <label class="required fs-6 fw-semibold mb-2">Nationalité</label>
+      <!--end::Label-->
+      <!--begin::Input-->
+      <input type="text" name="nom" formControlName="nom" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nom" value="" [ngClass]="{
+                    'is-invalid': nationaliteForm.controls['nom'].invalid && nationaliteForm.controls['nom'].touched,
+                    'is-valid': nationaliteForm.controls['nom'].valid
+                }" />
+      <!--end::Input-->
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary me-3" [disabled]="nationaliteForm.invalid">
+        {{ modalConfig.submitButtonLabel }}
+      </button>
+    </div>
+  </div>
+</form>
